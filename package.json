@@ -1,0 +1,32 @@
+{
+  "name": "vue-electron",
+  "version": "1.0.0",
+  "description": "Simple Vue-Electron boilerplate",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack-build": "NODE_ENV=production webpack --progress --profile --colors",
+    "dev-server": "NODE_ENV=development webpack-dev-server --inline --hot --quiet --port 3000",
+    "electron-watch": "NODE_ENV=development nodemon -e js node_modules/.bin/electron .",
+    "electron": "electron ."
+  },
+  "keywords": [
+    "vue",
+    "electron"
+  ],
+  "author": "Anton <anton@sobesednik.media>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.4.13",
+    "vue": "^2.1.8"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "nodemon": "^1.11.0",
+    "vue-loader": "^10.0.2",
+    "vue-template-compiler": "^2.1.8",
+    "webpack": "^2.2.0-rc.3",
+    "webpack-dev-server": "^2.2.0-rc.0"
+  },
+  "private": true
+}
