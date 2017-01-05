@@ -6,10 +6,14 @@
         <p v-if="loading">loading...</p>
         <p v-else>{{ rnd }}</p>
 
-        <a href="#" @click.prevent="generateRnd">Generate random number</a>
+        <a href="#" @click.prevent="generateRndBrowser">Generate random number in browser</a>
+        <br>
+        <a href="#" @click.prevent="generateRndServer">Generate random number on server</a>
     </div>
 </template>
 <script>
+    const api = require('../api')
+
     module.exports = {
         data: () => ({
             message: 'hello world!',
@@ -17,7 +21,7 @@
             loading: false,
         }),
         methods: {
-            generateRnd: async function () {
+            generateRndBrowser: async function () {
                 this.loading = true
                 const res = await new Promise(resolve =>
                     setTimeout(() =>
@@ -27,9 +31,15 @@
                 this.rnd = res
                 this.loading = false
             },
+            generateRndServer: async function () {
+                this.loading = true
+                const res = await api.send('generateRnd')
+                this.rnd = res
+                this.loading = false
+            },
         },
         created: function () {
-            this.generateRnd()
+            this.generateRndBrowser()
         }
     }
 </script>

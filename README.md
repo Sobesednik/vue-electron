@@ -8,7 +8,39 @@ A simple boilerplate to get started with Electron and Vue2 in seconds
 - index.html
 - webpack with vue-loader
 
-### babel: transform-async-to-generator + syntax-async-functions
+## ipc api
+
+You can send message to the main process with _app/api_:
+
+```js
+const api = require('../api')
+
+methods: {
+    sendRequest: async function () {
+        const res = await api.send('getData')
+        this.results = res
+    },
+},
+```
+
+Use _src/api_ to specify endpoints:
+
+```js
+if (message.method === 'getData') {
+    const res = await new Promise(resolve =>
+        setTimeout(() => resolve('foo-bar'), 1000)
+    )
+    return reply(res)
+}
+```
+
+Every message gets a unique id, so that it is easy to communicate between the two processes,
+but this happens behind the scenes and generally you should not be concerned about it.
+
+<!--[electron-ipc-tunnel](https://github.com/Cu3PO42/electron-ipc-tunnel) is a good candidate
+to replace current function.-->
+
+## babel: transform-async-to-generator, syntax-async-functions
 
 There's _.babelrc_ file which has the following:
 
@@ -21,7 +53,9 @@ There's _.babelrc_ file which has the following:
 }
 ```
 
-So that it you can write _async_ functions:
+So that it you can write _async_ functions both in browser -- with webpack, and on server -- using
+_babel-register_ (but perhaps you shouldn't do it on the server, we should add a script to compile
+_src_ source as well):
 
 ```js
 methods: {
@@ -35,6 +69,8 @@ methods: {
     },
 },
 ```
+
+Welcome to the future.
 
 ## Commands
 
