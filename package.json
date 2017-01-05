@@ -21,6 +21,10 @@
     "vue": "^2.1.8"
   },
   "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
     "css-loader": "^0.26.1",
     "nodemon": "^1.11.0",
     "vue-loader": "^10.0.2",
