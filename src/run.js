@@ -28,7 +28,7 @@ function createWindow () {
 }
 
 app.on('ready', () => {
-    ipcMain.on('asynchronous-message', api);
+    ipcMain.on('asynchronous-message', api)
     createWindow()
 })
 
